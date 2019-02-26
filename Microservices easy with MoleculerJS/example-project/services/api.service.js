@@ -7,6 +7,7 @@ module.exports = {
   name: "api",
   
   settings: {
+    port: process.env.PORT || 3000,
     routes: [{
       path: "/math",
       aliases: {
