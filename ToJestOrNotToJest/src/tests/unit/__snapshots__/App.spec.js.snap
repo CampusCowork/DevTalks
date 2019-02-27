@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App.vue renders the app component 1`] = `
+<div
+  id="app"
+>
+  <div>
+    <h1
+      class="logo text-purple text-5xl"
+    >
+      
+    ADDR+
+  
+    </h1>
+     
+    <div
+      class="addr flex mx-auto items-center justify-center mt-8"
+    >
+      <div
+        class="addr-input"
+      >
+        <input
+          class="px-4 py-2 w-32 bg-grey-lighter outline-none"
+          data-cy="input"
+          type="text"
+        />
+      </div>
+       
+      <span
+        class="font-bold mx-4"
+      >
+        +
+      </span>
+       
+      <div
+        class="addr-input"
+      >
+        <input
+          class="px-4 py-2 w-32 bg-grey-lighter outline-none"
+          data-cy="input"
+          type="text"
+        />
+      </div>
+       
+      <span
+        class="font-bold mx-4"
+      >
+        =
+      </span>
+       
+      <div
+        class="addr-result"
+      >
+        <span
+          data-cy="result"
+        >
+          
+    0
+  
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
