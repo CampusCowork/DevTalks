@@ -1,0 +1,25 @@
+{
+  "name": "moleculer-keynote",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "moleculer-runner --repl --hot services",
+    "start": "node --inspect=0.0.0.0:9229 node_modules/moleculer/bin/moleculer-runner services",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "moleculer": "^0.13.7",
+    "moleculer-db": "^0.7.7",
+    "moleculer-web": "^0.8.5"
+  },
+  "devDependencies": {
+    "jest": "^24.1.0",
+    "jest-cli": "^24.1.0",
+    "moleculer-repl": "^0.5.6"
+  }
+}
