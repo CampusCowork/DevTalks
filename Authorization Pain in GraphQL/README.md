@@ -2,7 +2,7 @@
 
     npm run demo
 
-And visit localhost:8080
+And visit localhost:4000/playground
 
 ## Author:
 
