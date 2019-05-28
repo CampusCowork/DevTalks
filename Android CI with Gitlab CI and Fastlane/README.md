@@ -184,3 +184,4 @@ This is a checklist for you to be set up and ready for deploying:
 ## Links
 [How to publish with gitlab and fastlane step by step](https://about.gitlab.com/2019/01/28/android-publishing-with-gitlab-and-fastlane)
 [How to make screenshots and upload them to Google Play Store with fastlane](https://docs.fastlane.tools/getting-started/android/screenshots/)
+[Link to workshop presentation](https://docs.google.com/presentation/d/1-YIK7H_vstpOspG0JWb5X4fMPfp96WoFSn00Pof60Kk/)
