@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+// changing this field from outside fastlane script
+// that gets the latest version from Google Play tracks
+// change it localy if need
+int appVersionCode = 1
+
+// lets read .env and use it for keys
+def props = new Properties()
+try {
+    file("${rootProject.projectDir}/keys/.env.default").withInputStream { props.load(it) }
+} catch (FileNotFoundException e) {
+    println "Error loading 'fastlane/.env.default' file" + e.localizedMessage
+}
+
+android {
+    signingConfigs {
+        release {
+            keyAlias props.ALIAS_NAME ?: System.getenv("ALIAS_NAME")
+            storeFile file("${rootProject.projectDir}/keys/default-key.jks")
+            keyPassword props.KEY_PASS ?: System.getenv("KEY_PASS")
+            storePassword props.STORE_PASS ?: System.getenv("STORE_PASS")
+        }
+    }
+
+    compileSdkVersion 28
+    def appVersionName = "0.1.${System.env.VERSION_SHA?: "0"}"
+    defaultConfig {
+        applicationId "com.campus_cowork.campusdevtalks"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode Integer.valueOf(System.env.VERSION_CODE ?: appVersionCode)
+        versionName appVersionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "mode"
+    productFlavors {
+        beta {
+            dimension "mode"
+            signingConfig signingConfigs.release
+            versionNameSuffix 'b'
+        }
+        production {
+            dimension "mode"
+            signingConfig signingConfigs.release
+        }
+        develop {
+            dimension "mode"
+            signingConfig signingConfigs.release
+            versionNameSuffix 'dev'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha05'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha05'
+
+    implementation 'com.google.android.material:material:1.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0-beta01'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-beta01'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+}

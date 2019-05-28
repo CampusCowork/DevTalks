@@ -1,0 +1,68 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+#update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new QA Developers Build to Google Play's new internal track"
+  lane :develop do
+    # here we select what Gradle task we'd like to call
+    gradle(task: "assemble",
+           flavor: "Develop",
+           build_type: "Release")
+    # we are not going to upload any other data to google
+    # since its not prepared
+    supply(track: "internal",
+           apk: "app/build/outputs/apk/develop/release/app-develop-release.apk",
+           check_superseded_tracks: true,
+           skip_upload_metadata:true,
+           skip_upload_images:true,
+           skip_upload_screenshots:true)
+  end
+
+  desc "Submit a new Beta Build to Google Play to beta track"
+  lane :beta do
+    # here we select what Gradle task we'd like to call
+    gradle(task: "assemble",
+           flavor: "Beta",
+           build_type: "Release")
+    # we are not going to upload any other data to google
+    # since its not prepared
+    supply(track: "beta",
+           apk: "app/build/outputs/apk/beta/release/app-beta-release.apk",
+           check_superseded_tracks: true,
+           skip_upload_metadata:true,
+           skip_upload_images:true,
+           skip_upload_screenshots:true)
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    # here we select what Gradle task we'd like to call
+    gradle(task: "assemble",
+           flavor: "Production",
+           build_type: "Release")
+    supply(skip_upload_metadata:true,
+           apk: "app/build/outputs/apk/production/release/app-production-release.apk",
+           check_superseded_tracks: true,
+           skip_upload_images:true,
+           skip_upload_screenshots:true)
+  end
+end
