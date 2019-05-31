@@ -1,0 +1,2 @@
+json_key_file("keys/google-api-key.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("com.campus_cowork.campusdevtalks") # e.g. com.krausefx.app
