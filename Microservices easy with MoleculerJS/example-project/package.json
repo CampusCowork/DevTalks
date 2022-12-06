@@ -15,7 +15,7 @@
   "dependencies": {
     "moleculer": "^0.13.7",
     "moleculer-db": "^0.7.7",
-    "moleculer-web": "^0.8.5"
+    "moleculer-web": "^0.10.4"
   },
   "devDependencies": {
     "jest": "^24.1.0",
